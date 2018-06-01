@@ -73,14 +73,19 @@
 
 
 
+<meta name="description" content="问题描述">
 <meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:title" content="图着色|算法|">
+<meta property="og:url" content="http://yoursite.com/图着色-算法/index.html">
 <meta property="og:site_name" content="夏雨微凉 ^^">
+<meta property="og:description" content="问题描述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-30T14:28:47.448Z">
+<meta property="og:image" content="https://i.loli.net/2018/06/01/5b1156a59f55a.png">
+<meta property="og:updated_time" content="2018-06-01T15:05:48.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
+<meta name="twitter:title" content="图着色|算法|">
+<meta name="twitter:description" content="问题描述">
+<meta name="twitter:image" content="https://i.loli.net/2018/06/01/5b1156a59f55a.png">
 
 
 
@@ -112,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/图着色-算法/"/>
 
 
 
@@ -260,14 +265,14 @@
       <div class="post-body">
         
         
-          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><a id="more"></a>
+          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1>  <a id="more"></a>
 <blockquote>
 <p>图着色问题（Graph Coloring Problem, GCP）　又称着色问题，是最著名的NP-完全问题之一。<br>    数学定义：给定一个无向图G=（V, E），其中V为顶点集合，E为边集合，图着色问题即为将V分为K个颜色组，每个组形成一个独立集，即其中没有相邻的顶点。其优化版本是希望获得最小的K值。<br>    图的m-着色判定问题——给定无向连通图G和m种不同的颜色。用这些颜色为图G的各顶点着色，每个顶点着一种颜色，是否有一种着色法使G中任意相邻的2个顶点着不同颜色?</p>
 </blockquote>
 <h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><p>这个问题就像八皇后之类的题目类似，枚举+回溯，具体点就是每个点都把n个颜色放一遍，每当一个点放了一种颜色，就开始填下一个点，等这一条路到头之后再回到这个点并填入下一个颜色继续往下走。<strong> 注意：有些算法中用回溯的时候要保证每一次回到当前这个点开始下个路线时“状态”要保持一致 </strong></p>
 <p> #输入说明：本例子为最简单的三个颜色示例，第一行一个n，接下来的n行代表各个点之间的连接状态<br> 示例1：<br> 5<br> 1 2<br> 1 3<br> 1 4<br> 2 3<br> 4 3</p>
 <p><img src="https://i.loli.net/2018/06/01/5b1156a59f55a.png" alt="输入示例"></p>
-<p>‘’’ java<br>import java.util.Scanner;</p>
+<p>‘’’java<br>import java.util.Scanner;</p>
 <p>public class map {<br>    private static int e[][];//存储顶点连接情况的二维矩阵<br>    private static int sear[];//存储每个顶点的染色情况<br>    private static int colornum =3;<br>    private static int SUM =0;</p>
 <pre><code>//递归函数
 private static void fun(int index){
