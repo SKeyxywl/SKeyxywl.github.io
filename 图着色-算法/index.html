@@ -118,7 +118,7 @@
 
 
 
-  <title>categories | 夏雨微凉 ^^</title>
+  <title>图着色|算法| | 夏雨微凉 ^^</title>
   
 
 
@@ -248,7 +248,7 @@
     <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
+	<h1 class="post-title" itemprop="name headline">图着色|算法|</h1>
 
 
 
@@ -260,14 +260,64 @@
       <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                目前共计 1 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+          <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><a id="more"></a>
+<blockquote>
+<p>图着色问题（Graph Coloring Problem, GCP）　又称着色问题，是最著名的NP-完全问题之一。<br>    数学定义：给定一个无向图G=（V, E），其中V为顶点集合，E为边集合，图着色问题即为将V分为K个颜色组，每个组形成一个独立集，即其中没有相邻的顶点。其优化版本是希望获得最小的K值。<br>    图的m-着色判定问题——给定无向连通图G和m种不同的颜色。用这些颜色为图G的各顶点着色，每个顶点着一种颜色，是否有一种着色法使G中任意相邻的2个顶点着不同颜色?</p>
+</blockquote>
+<h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><p>这个问题就像八皇后之类的题目类似，枚举+回溯，具体点就是每个点都把n个颜色放一遍，每当一个点放了一种颜色，就开始填下一个点，等这一条路到头之后再回到这个点并填入下一个颜色继续往下走。<strong> 注意：有些算法中用回溯的时候要保证每一次回到当前这个点开始下个路线时“状态”要保持一致 </strong></p>
+<p> #输入说明：本例子为最简单的三个颜色示例，第一行一个n，接下来的n行代表各个点之间的连接状态<br> 示例1：<br> 5<br> 1 2<br> 1 3<br> 1 4<br> 2 3<br> 4 3</p>
+<p><img src="https://i.loli.net/2018/06/01/5b1156a59f55a.png" alt="输入示例"></p>
+<p>‘’’ java<br>import java.util.Scanner;</p>
+<p>public class map {<br>    private static int e[][];//存储顶点连接情况的二维矩阵<br>    private static int sear[];//存储每个顶点的染色情况<br>    private static int colornum =3;<br>    private static int SUM =0;</p>
+<pre><code>//递归函数
+private static void fun(int index){
+    //进来的时候这个点已经染好色，判断这个点可以染这个色吗
+    if(isOk(index)){
+        //到这说明这个点的当前颜色成立，接着判断是不是最后一个点，不是的话继续把下一个点染色，
+        //然后进行递归
+        if(index==sear.length-1){
+            SUM++;
+            System.out.println(&quot;第&quot;+SUM+&quot;种方案：&quot;);
+            show(index);
+        }else{
+            for(int i=1;i&lt;=colornum;i++){
+                sear[index+1]=i;
+                fun(index+1);
+            }
+        }
+    }
+}
+
+private static void show(int index) {
+    for(int i=1;i&lt;sear.length;i++){
+        System.out.println(i+&quot;点的颜色是：&quot;+sear[i]);
+    }
+}
+
+private static boolean isOk(int index) {
+    for(int i=1;i&lt;index;i++){
+        if(e[index][i]==1&amp;&amp;sear[index]==sear[i]){//如果和它相连的点的颜色相同
+            return false;
+        }
+    }
+    return true;
+}
+public static void main(String args[]){
+    Scanner scanner = new Scanner(System.in);
+    int n = scanner.nextInt();
+    e = new int[n][n];
+    sear = new int[n];
+    for(int i=0;i&lt;n;i++){
+        int a =scanner.nextInt();
+        int b =scanner.nextInt();
+        e[a][b]=1;
+        e[b][a]=1;
+    }
+    fun(0);
+}
+</code></pre><p>}</p>
+<p>‘’’</p>
+
         
       </div>
       
@@ -285,6 +335,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjk1Mi8xMzQ4OA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -305,8 +364,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -357,6 +425,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思路"><span class="nav-number">1.1.</span> <span class="nav-text">主要思路</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -516,6 +600,17 @@ document.getElementById("cnzz_stat_icon_5844924").style.display = "none";
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
