@@ -73,19 +73,14 @@
 
 
 
-<meta name="description" content="问题描述">
 <meta property="og:type" content="website">
-<meta property="og:title" content="图着色|算法|">
-<meta property="og:url" content="http://yoursite.com/图着色-算法/index.html">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
 <meta property="og:site_name" content="夏雨微凉 ^^">
-<meta property="og:description" content="问题描述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.loli.net/2018/06/01/5b1156a59f55a.png">
-<meta property="og:updated_time" content="2018-06-01T15:05:48.716Z">
+<meta property="og:updated_time" content="2018-05-30T14:28:47.448Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图着色|算法|">
-<meta name="twitter:description" content="问题描述">
-<meta name="twitter:image" content="https://i.loli.net/2018/06/01/5b1156a59f55a.png">
+<meta name="twitter:title" content="about">
 
 
 
@@ -117,7 +112,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/图着色-算法/"/>
+  <link rel="canonical" href="http://yoursite.com/about/"/>
 
 
 
@@ -350,58 +345,12 @@
         <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><blockquote>
 <p>图着色问题（Graph Coloring Problem, GCP）　又称着色问题，是最著名的NP-完全问题之一。<br>    数学定义：给定一个无向图G=（V, E），其中V为顶点集合，E为边集合，图着色问题即为将V分为K个颜色组，每个组形成一个独立集，即其中没有相邻的顶点。其优化版本是希望获得最小的K值。<br>    图的m-着色判定问题——给定无向连通图G和m种不同的颜色。用这些颜色为图G的各顶点着色，每个顶点着一种颜色，是否有一种着色法使G中任意相邻的2个顶点着不同颜色?</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h2><p>这个问题就像八皇后之类的题目类似，枚举+回溯，具体点就是每个点都把n个颜色放一遍，每当一个点放了一种颜色，就开始填下一个点，等这一条路到头之后再回到这个点并填入下一个颜色继续往下走。<strong> 注意：有些算法中用回溯的时候要保证每一次回到当前这个点开始下个路线时“状态”要保持一致 </strong></p>
 <p> #输入说明：本例子为最简单的三个颜色示例，第一行一个n，接下来的n行代表各个点之间的连接状态<br> 示例1：<br> 5<br> 1 2<br> 1 3<br> 1 4<br> 2 3<br> 4 3</p>
 <p><img src="https://i.loli.net/2018/06/01/5b1156a59f55a.png" alt="输入示例"></p>
-<p>‘’’java<br>import java.util.Scanner;</p>
-<p>public class map {<br>    private static int e[][];//存储顶点连接情况的二维矩阵<br>    private static int sear[];//存储每个顶点的染色情况<br>    private static int colornum =3;<br>    private static int SUM =0;</p>
-<pre><code>//递归函数
-private static void fun(int index){
-    //进来的时候这个点已经染好色，判断这个点可以染这个色吗
-    if(isOk(index)){
-        //到这说明这个点的当前颜色成立，接着判断是不是最后一个点，不是的话继续把下一个点染色，
-        //然后进行递归
-        if(index==sear.length-1){
-            SUM++;
-            System.out.println(&quot;第&quot;+SUM+&quot;种方案：&quot;);
-            show(index);
-        }else{
-            for(int i=1;i&lt;=colornum;i++){
-                sear[index+1]=i;
-                fun(index+1);
-            }
-        }
-    }
-}
-
-private static void show(int index) {
-    for(int i=1;i&lt;sear.length;i++){
-        System.out.println(i+&quot;点的颜色是：&quot;+sear[i]);
-    }
-}
-
-private static boolean isOk(int index) {
-    for(int i=1;i&lt;index;i++){
-        if(e[index][i]==1&amp;&amp;sear[index]==sear[i]){//如果和它相连的点的颜色相同
-            return false;
-        }
-    }
-    return true;
-}
-public static void main(String args[]){
-    Scanner scanner = new Scanner(System.in);
-    int n = scanner.nextInt();
-    e = new int[n][n];
-    sear = new int[n];
-    for(int i=0;i&lt;n;i++){
-        int a =scanner.nextInt();
-        int b =scanner.nextInt();
-        e[a][b]=1;
-        e[b][a]=1;
-    }
-    fun(0);
-}
-</code></pre><p>}<br>‘’’</p>
+<p><img src="https://i.loli.net/2018/06/02/5b12100cc8f19.png" alt="图着色6-2.png"></p>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">map</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> e[][];<span class="comment">//存储顶点连接情况的二维矩阵</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> sear[];<span class="comment">//存储每个顶点的染色情况</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> colornum =<span class="number">3</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> SUM =<span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//递归函数</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">		<span class="comment">//进来的时候这个点已经染好色，判断这个点可以染这个色吗</span></span><br><span class="line">		<span class="keyword">if</span>(isOk(index))&#123;</span><br><span class="line">			<span class="comment">//到这说明这个点的当前颜色成立，接着判断是不是最后一个点，不是的话继续把下一个点染色，</span></span><br><span class="line">			<span class="comment">//然后进行递归</span></span><br><span class="line">			<span class="keyword">if</span>(index==sear.length-<span class="number">1</span>)&#123;</span><br><span class="line">				SUM++;</span><br><span class="line">				System.out.println(<span class="string">"第"</span>+SUM+<span class="string">"种方案："</span>);</span><br><span class="line">				show(index);</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=colornum;i++)&#123;<span class="comment">//染三种颜色</span></span><br><span class="line">					sear[index+<span class="number">1</span>]=i;<span class="comment">//下一个点染第i个颜色</span></span><br><span class="line">					fun(index+<span class="number">1</span>);<span class="comment">//染完之后就去判断</span></span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;sear.length;i++)&#123;</span><br><span class="line">			System.out.println(i+<span class="string">"点的颜色是："</span>+sear[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isOk</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;index;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(e[index][i]==<span class="number">1</span>&amp;&amp;sear[index]==sear[i])&#123;<span class="comment">//如果和它相连的点的颜色相同</span></span><br><span class="line">				<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">		Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		<span class="keyword">int</span> n = scanner.nextInt();</span><br><span class="line">		e = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">		sear = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">			<span class="keyword">int</span> a =scanner.nextInt();</span><br><span class="line">			<span class="keyword">int</span> b =scanner.nextInt();</span><br><span class="line">			e[a][b]=<span class="number">1</span>;</span><br><span class="line">			e[b][a]=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		fun(<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -562,7 +511,7 @@ public static void main(String args[]){
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思路"><span class="nav-number">1.1.</span> <span class="nav-text">主要思路</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要思路"><span class="nav-number">1.1.</span> <span class="nav-text">主要思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完整代码"><span class="nav-number">1.1.1.</span> <span class="nav-text">完整代码</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
