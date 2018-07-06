@@ -308,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java-POST/" itemprop="url" rel="index">
-                    <span itemprop="name">java POST</span>
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
                   </a>
                 </span>
 
@@ -346,11 +346,14 @@
 
       
         
-          
-            <a id="more"></a>
-<p>最近被这个坑了两天，先介绍下情况：逆某个客户端的登录协议，关键数据用了RSA加密，加密之后用Base64编码后传输。这是基本情况，遇到的问题是提交的数据服务器解析失败，本来怀疑自己的RSA加密部分出错，通过安卓环境debug和PCjavadbug后发现不是这里的问题，最后终于终于找到了问题所在，用java提交post数据，需要把数据转换成Byte数组，而最终传输的数据中’+’(16进制:0x2B)会变成’ ‘(16进制:0x20),正在制定解决方案<br><img src="https://i.loli.net/2018/07/06/5b3f0931e2215.png" alt="post.png"></p>
-
-          
+          <p>最近被这个坑了两天，先介绍下情况：<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/06/Java-Post方式提交数据遇到的坑/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -958,7 +961,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
